@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/shops_screen.dart';
 import '../models/meal.dart';
 import '../widgets/main_drawer.dart';
 import './favorites_screen.dart';
@@ -6,8 +7,9 @@ import './categories_screen.dart';
 
 class TabsScreen extends StatefulWidget {
   final List<Meal> favoriteMeals;
+  final initialTabIndex;
 
-  TabsScreen(this.favoriteMeals);
+  TabsScreen(this.favoriteMeals, this.initialTabIndex);
 
   @override
   _TabsScreenState createState() => _TabsScreenState();
@@ -24,8 +26,10 @@ class _TabsScreenState extends State<TabsScreen> {
       {
         'page': FavoritesScreen(widget.favoriteMeals),
         'title': 'Your Favourites'
-      }
+      },
+      {'page': ShopsScreen(), 'title': 'Shops'},
     ];
+    _selectedPageIndex = widget.initialTabIndex;
     super.initState();
   }
 
@@ -59,6 +63,10 @@ class _TabsScreenState extends State<TabsScreen> {
               backgroundColor: Theme.of(context).primaryColor,
               icon: Icon(Icons.star),
               title: Text('Favorites')),
+          BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
+              icon: Icon(Icons.shop),
+              title: Text('Shops')),
         ],
       ),
     );

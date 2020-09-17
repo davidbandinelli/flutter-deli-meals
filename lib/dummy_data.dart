@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './models/shop.dart';
 
 import './models/category.dart';
 import './models/meal.dart';
@@ -53,6 +54,33 @@ const DUMMY_CATEGORIES = const [
     id: 'c10',
     title: 'Summer',
     color: Colors.teal,
+  ),
+];
+
+const DUMMY_SHOPS = const [
+  Shop(
+    codice: 'c1',
+    nome: 'Negozio 1',
+    citta: 'Arezzo',
+    prov: 'AR',
+    indirizzo: 'Via Lunga 3',
+    color: Colors.purple,
+  ),
+  Shop(
+    codice: 'c2',
+    nome: 'Negozio 2',
+    citta: 'Firenze',
+    prov: 'FI',
+    indirizzo: 'Via Larga 3',
+    color: Colors.green,
+  ),
+  Shop(
+    codice: 'c3',
+    nome: 'Negozio 3',
+    citta: 'Bari',
+    prov: 'BA',
+    indirizzo: 'Via Vai 56',
+    color: Colors.orange,
   ),
 ];
 

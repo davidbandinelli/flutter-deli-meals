@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'screens/shop_detail_screen.dart';
+import 'screens/shops_screen.dart';
 import './dummy_data.dart';
 import 'models/meal.dart';
+import 'models/shop.dart';
 import 'screens/filters_screen.dart';
 import 'screens/tabs_screen.dart';
 import 'screens/category_meals_screen.dart';
@@ -22,6 +25,7 @@ class _MyAppState extends State<MyApp> {
     'vegan': false,
   };
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Shop> _availableShops = DUMMY_SHOPS;
   List<Meal> _favoriteMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
@@ -82,10 +86,14 @@ class _MyAppState extends State<MyApp> {
       //home: CategoriesScreen(),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => TabsScreen(_favoriteMeals),
+        '/': (ctx) => TabsScreen(_favoriteMeals, 0),
+        '/tab-shops': (ctx) => TabsScreen(_favoriteMeals, 2),
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen(_toggleFavorite, _isMealFavorite),
+        ShopsScreen.routeName: (ctx) => ShopsScreen(),
+        MealDetailScreen.routeName: (ctx) =>
+            MealDetailScreen(_toggleFavorite, _isMealFavorite),
+        ShopDetailScreen.routeName: (ctx) => ShopDetailScreen(),
         FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
       },
       onGenerateRoute: (settings) {
