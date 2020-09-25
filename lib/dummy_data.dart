@@ -1,8 +1,31 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import './models/shop.dart';
 
 import './models/category.dart';
 import './models/meal.dart';
+
+class HttpService {
+  final String url =
+      "https://app2.centroitalia.coop.it:9443/AppAPI/api/v2/app/faststorelist";
+  List data;
+
+  Future<List<Shop>> getShops() async {
+    Response res = await get(url);
+
+    if (res.statusCode == 200) {
+      var body = jsonDecode(res.body);
+      data = body["negozi"];
+      List<Shop> shops = data.map((dynamic e) => Shop.fromJson(e)).toList();
+
+      return shops;
+    } else {
+      throw "Errore";
+    }
+  }
+}
 
 const DUMMY_CATEGORIES = const [
   Category(
